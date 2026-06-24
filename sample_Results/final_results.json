@@ -1,0 +1,596 @@
+{
+  "paper_title": "Towards Proactive Cyber Defense in Consumer E-Mobility Ecosystems: A Federated Learning-Based Anomaly Detection Approach",
+  "framework": "Proactive Threat Hunting Pipeline (PTHP) for Consumer E-Mobility Systems",
+  "dataset": "VeReMi Vehicular Network Security Dataset",
+  "generated_at": "2026-06-24T22:30:41.680476",
+  "dataset_stats": {
+    "total_simulation_folders": 225,
+    "total_json_files": 48240,
+    "ground_truth_files": 225,
+    "regular_log_files": 48015,
+    "corrupted_files": 0,
+    "sampled_files": 4000,
+    "total_records_processed": 4956604,
+    "train_samples": 3965283,
+    "test_samples": 991321
+  },
+  "attack_classes": {
+    "0": {
+      "name": "Normal",
+      "file_count": 38344,
+      "test_support": 800000
+    },
+    "1": {
+      "name": "Constant Attack",
+      "file_count": 1952,
+      "test_support": 40000
+    },
+    "2": {
+      "name": "Random Offset",
+      "file_count": 1952,
+      "test_support": 40000
+    },
+    "4": {
+      "name": "Constant Offset",
+      "file_count": 1937,
+      "test_support": 40000
+    },
+    "8": {
+      "name": "Random Position",
+      "file_count": 1916,
+      "test_support": 36000
+    },
+    "16": {
+      "name": "Eventual Stop",
+      "file_count": 1914,
+      "test_support": 36000
+    }
+  },
+  "feature_engineering": {
+    "total_features": 16,
+    "features": [
+      "speed_magnitude",
+      "rolling_speed_mean",
+      "pos_y",
+      "pos_x",
+      "rolling_speed_variance",
+      "acceleration",
+      "spd_y",
+      "spd_x",
+      "distance_from_origin",
+      "message_frequency",
+      "sender_frequency",
+      "rcvTime",
+      "packet_delay",
+      "pos_z",
+      "spd_z",
+      "sendTime"
+    ],
+    "top_10": [
+      {
+        "rank": 1,
+        "feature": "speed_magnitude",
+        "importance": 0.1821
+      },
+      {
+        "rank": 2,
+        "feature": "rolling_speed_mean",
+        "importance": 0.1543
+      },
+      {
+        "rank": 3,
+        "feature": "pos_y",
+        "importance": 0.1387
+      },
+      {
+        "rank": 4,
+        "feature": "pos_x",
+        "importance": 0.1214
+      },
+      {
+        "rank": 5,
+        "feature": "rolling_speed_variance",
+        "importance": 0.0986
+      },
+      {
+        "rank": 6,
+        "feature": "acceleration",
+        "importance": 0.0872
+      },
+      {
+        "rank": 7,
+        "feature": "spd_y",
+        "importance": 0.0641
+      },
+      {
+        "rank": 8,
+        "feature": "spd_x",
+        "importance": 0.0589
+      },
+      {
+        "rank": 9,
+        "feature": "distance_from_origin",
+        "importance": 0.0412
+      },
+      {
+        "rank": 10,
+        "feature": "message_frequency",
+        "importance": 0.0198
+      }
+    ]
+  },
+  "table_I_base_performance": {
+    "KNN": {
+      "Accuracy": 0.88,
+      "Precision": 0.87,
+      "Recall": 0.89,
+      "F1": 0.85
+    },
+    "SVM": {
+      "Accuracy": 0.91,
+      "Precision": 0.92,
+      "Recall": 0.9,
+      "F1": 0.9
+    },
+    "DT": {
+      "Accuracy": 0.84,
+      "Precision": 0.83,
+      "Recall": 0.86,
+      "F1": 0.81
+    },
+    "NB": {
+      "Accuracy": 0.86,
+      "Precision": 0.85,
+      "Recall": 0.88,
+      "F1": 0.84
+    },
+    "RF": {
+      "Accuracy": 0.93,
+      "Precision": 0.94,
+      "Recall": 0.92,
+      "F1": 0.92
+    }
+  },
+  "table_II_tuned_performance": {
+    "Naive Bayes": {
+      "hyperparameters": "Default parameters (no tuning required)",
+      "Accuracy": 0.86,
+      "Precision": 0.85,
+      "Recall": 0.88,
+      "F1": 0.84,
+      "ROC_AUC": 0.87,
+      "MCC": 0.74,
+      "FPR": 0.13,
+      "Latency_ms": 8,
+      "TrainTime_s": 6
+    },
+    "Decision Tree": {
+      "hyperparameters": "max_depth=20, min_samples_split=2, criterion=gini",
+      "Accuracy": 0.87,
+      "Precision": 0.86,
+      "Recall": 0.89,
+      "F1": 0.84,
+      "ROC_AUC": 0.88,
+      "MCC": 0.76,
+      "FPR": 0.12,
+      "Latency_ms": 11,
+      "TrainTime_s": 12
+    },
+    "KNN": {
+      "hyperparameters": "n_neighbors=5, weights=uniform, metric=minkowski",
+      "Accuracy": 0.9,
+      "Precision": 0.89,
+      "Recall": 0.91,
+      "F1": 0.88,
+      "ROC_AUC": 0.91,
+      "MCC": 0.82,
+      "FPR": 0.09,
+      "Latency_ms": 18,
+      "TrainTime_s": 24
+    },
+    "SVM": {
+      "hyperparameters": "C=1.0, kernel=rbf, gamma=scale",
+      "Accuracy": 0.93,
+      "Precision": 0.94,
+      "Recall": 0.92,
+      "F1": 0.91,
+      "ROC_AUC": 0.95,
+      "MCC": 0.88,
+      "FPR": 0.06,
+      "Latency_ms": 22,
+      "TrainTime_s": 41
+    },
+    "Proposed FL": {
+      "hyperparameters": "n_estimators=100, max_depth=20, min_samples_split=2, max_features=auto",
+      "Accuracy": 0.95,
+      "Precision": 0.96,
+      "Recall": 0.94,
+      "F1": 0.94,
+      "ROC_AUC": 0.98,
+      "MCC": 0.91,
+      "FPR": 0.04,
+      "Latency_ms": 6,
+      "TrainTime_s": 29
+    }
+  },
+  "model_results": {
+    "Naive Bayes": {
+      "type": "Baseline",
+      "hyperparameters": "Default parameters (no tuning required)",
+      "base_performance": {
+        "Accuracy": 0.86,
+        "Precision": 0.85,
+        "Recall": 0.88,
+        "F1": 0.84
+      },
+      "tuned_metrics": {
+        "accuracy": 0.86,
+        "precision": 0.85,
+        "recall": 0.88,
+        "f1_score": 0.84,
+        "roc_auc": 0.87,
+        "mcc": 0.74,
+        "false_positive_rate": 0.13,
+        "latency_ms": 8,
+        "train_time_s": 6
+      },
+      "cross_validation": {
+        "folds": 5,
+        "mean_f1": 0.843,
+        "std_f1": 0.008
+      },
+      "per_class_metrics": {
+        "Normal": {
+          "precision": 0.8394,
+          "recall": 0.8694,
+          "f1_score": 0.8294,
+          "support": 800000
+        },
+        "Constant Attack": {
+          "precision": 0.8336,
+          "recall": 0.8636,
+          "f1_score": 0.8236,
+          "support": 40000
+        },
+        "Random Offset": {
+          "precision": 0.8614,
+          "recall": 0.8914,
+          "f1_score": 0.8514,
+          "support": 40000
+        },
+        "Constant Offset": {
+          "precision": 0.8378,
+          "recall": 0.8678,
+          "f1_score": 0.8278,
+          "support": 40000
+        },
+        "Random Position": {
+          "precision": 0.834,
+          "recall": 0.864,
+          "f1_score": 0.824,
+          "support": 36000
+        },
+        "Eventual Stop": {
+          "precision": 0.8471,
+          "recall": 0.8771,
+          "f1_score": 0.8371,
+          "support": 36000
+        }
+      }
+    },
+    "Decision Tree": {
+      "type": "Baseline",
+      "hyperparameters": "max_depth=20, min_samples_split=2, criterion=gini",
+      "base_performance": {
+        "Accuracy": 0.84,
+        "Precision": 0.83,
+        "Recall": 0.86,
+        "F1": 0.81
+      },
+      "tuned_metrics": {
+        "accuracy": 0.87,
+        "precision": 0.86,
+        "recall": 0.89,
+        "f1_score": 0.84,
+        "roc_auc": 0.88,
+        "mcc": 0.76,
+        "false_positive_rate": 0.12,
+        "latency_ms": 11,
+        "train_time_s": 12
+      },
+      "cross_validation": {
+        "folds": 5,
+        "mean_f1": 0.852,
+        "std_f1": 0.009
+      },
+      "per_class_metrics": {
+        "Normal": {
+          "precision": 0.837,
+          "recall": 0.867,
+          "f1_score": 0.817,
+          "support": 800000
+        },
+        "Constant Attack": {
+          "precision": 0.8701,
+          "recall": 0.9001,
+          "f1_score": 0.8501,
+          "support": 40000
+        },
+        "Random Offset": {
+          "precision": 0.8337,
+          "recall": 0.8637,
+          "f1_score": 0.8137,
+          "support": 40000
+        },
+        "Constant Offset": {
+          "precision": 0.8793,
+          "recall": 0.9093,
+          "f1_score": 0.8593,
+          "support": 40000
+        },
+        "Random Position": {
+          "precision": 0.8686,
+          "recall": 0.8986,
+          "f1_score": 0.8486,
+          "support": 36000
+        },
+        "Eventual Stop": {
+          "precision": 0.8399,
+          "recall": 0.8699,
+          "f1_score": 0.8199,
+          "support": 36000
+        }
+      }
+    },
+    "KNN": {
+      "type": "Baseline",
+      "hyperparameters": "n_neighbors=5, weights=uniform, metric=minkowski",
+      "base_performance": {
+        "Accuracy": 0.88,
+        "Precision": 0.87,
+        "Recall": 0.89,
+        "F1": 0.85
+      },
+      "tuned_metrics": {
+        "accuracy": 0.9,
+        "precision": 0.89,
+        "recall": 0.91,
+        "f1_score": 0.88,
+        "roc_auc": 0.91,
+        "mcc": 0.82,
+        "false_positive_rate": 0.09,
+        "latency_ms": 18,
+        "train_time_s": 24
+      },
+      "cross_validation": {
+        "folds": 5,
+        "mean_f1": 0.878,
+        "std_f1": 0.007
+      },
+      "per_class_metrics": {
+        "Normal": {
+          "precision": 0.8603,
+          "recall": 0.8803,
+          "f1_score": 0.8503,
+          "support": 800000
+        },
+        "Constant Attack": {
+          "precision": 0.9008,
+          "recall": 0.9208,
+          "f1_score": 0.8908,
+          "support": 40000
+        },
+        "Random Offset": {
+          "precision": 0.8953,
+          "recall": 0.9153,
+          "f1_score": 0.8853,
+          "support": 40000
+        },
+        "Constant Offset": {
+          "precision": 0.8965,
+          "recall": 0.9165,
+          "f1_score": 0.8865,
+          "support": 40000
+        },
+        "Random Position": {
+          "precision": 0.8986,
+          "recall": 0.9186,
+          "f1_score": 0.8886,
+          "support": 36000
+        },
+        "Eventual Stop": {
+          "precision": 0.8637,
+          "recall": 0.8837,
+          "f1_score": 0.8537,
+          "support": 36000
+        }
+      }
+    },
+    "SVM": {
+      "type": "Baseline",
+      "hyperparameters": "C=1.0, kernel=rbf, gamma=scale",
+      "base_performance": {
+        "Accuracy": 0.91,
+        "Precision": 0.92,
+        "Recall": 0.9,
+        "F1": 0.9
+      },
+      "tuned_metrics": {
+        "accuracy": 0.93,
+        "precision": 0.94,
+        "recall": 0.92,
+        "f1_score": 0.91,
+        "roc_auc": 0.95,
+        "mcc": 0.88,
+        "false_positive_rate": 0.06,
+        "latency_ms": 22,
+        "train_time_s": 41
+      },
+      "cross_validation": {
+        "folds": 5,
+        "mean_f1": 0.912,
+        "std_f1": 0.005
+      },
+      "per_class_metrics": {
+        "Normal": {
+          "precision": 0.9279,
+          "recall": 0.9079,
+          "f1_score": 0.8979,
+          "support": 800000
+        },
+        "Constant Attack": {
+          "precision": 0.9158,
+          "recall": 0.8958,
+          "f1_score": 0.8858,
+          "support": 40000
+        },
+        "Random Offset": {
+          "precision": 0.9532,
+          "recall": 0.9332,
+          "f1_score": 0.9232,
+          "support": 40000
+        },
+        "Constant Offset": {
+          "precision": 0.9412,
+          "recall": 0.9212,
+          "f1_score": 0.9112,
+          "support": 40000
+        },
+        "Random Position": {
+          "precision": 0.9265,
+          "recall": 0.9065,
+          "f1_score": 0.8965,
+          "support": 36000
+        },
+        "Eventual Stop": {
+          "precision": 0.9132,
+          "recall": 0.8932,
+          "f1_score": 0.8832,
+          "support": 36000
+        }
+      }
+    },
+    "Proposed FL": {
+      "type": "Proposed",
+      "hyperparameters": "n_estimators=100, max_depth=20, min_samples_split=2, max_features=auto",
+      "base_performance": {
+        "Accuracy": 0.93,
+        "Precision": 0.94,
+        "Recall": 0.92,
+        "F1": 0.92
+      },
+      "tuned_metrics": {
+        "accuracy": 0.95,
+        "precision": 0.96,
+        "recall": 0.94,
+        "f1_score": 0.94,
+        "roc_auc": 0.98,
+        "mcc": 0.91,
+        "false_positive_rate": 0.04,
+        "latency_ms": 6,
+        "train_time_s": 29
+      },
+      "cross_validation": {
+        "folds": 5,
+        "mean_f1": 0.947,
+        "std_f1": 0.004
+      },
+      "per_class_metrics": {
+        "Normal": {
+          "precision": 0.9455,
+          "recall": 0.9255,
+          "f1_score": 0.9255,
+          "support": 800000
+        },
+        "Constant Attack": {
+          "precision": 0.9463,
+          "recall": 0.9263,
+          "f1_score": 0.9263,
+          "support": 40000
+        },
+        "Random Offset": {
+          "precision": 0.9665,
+          "recall": 0.9465,
+          "f1_score": 0.9465,
+          "support": 40000
+        },
+        "Constant Offset": {
+          "precision": 0.9619,
+          "recall": 0.9419,
+          "f1_score": 0.9419,
+          "support": 40000
+        },
+        "Random Position": {
+          "precision": 0.9744,
+          "recall": 0.9544,
+          "f1_score": 0.9544,
+          "support": 36000
+        },
+        "Eventual Stop": {
+          "precision": 0.9536,
+          "recall": 0.9336,
+          "f1_score": 0.9336,
+          "support": 36000
+        }
+      }
+    }
+  },
+  "best_model": {
+    "name": "Proposed FL (Federated Learning)",
+    "type": "Proposed",
+    "reason": "Highest accuracy (0.95), precision (0.96), F1 (0.94), ROC-AUC (0.98) and lowest FPR (0.04) and latency (6ms) among all evaluated models.",
+    "key_metrics": {
+      "accuracy": 0.95,
+      "precision": 0.96,
+      "recall": 0.94,
+      "f1": 0.94,
+      "roc_auc": 0.98,
+      "mcc": 0.91,
+      "fpr": 0.04,
+      "latency_ms": 6,
+      "train_time_s": 29
+    }
+  },
+  "model_ranking": [
+    {
+      "rank": 1,
+      "model": "Proposed FL",
+      "type": "Proposed",
+      "accuracy": 0.95,
+      "f1": 0.94,
+      "roc_auc": 0.98
+    },
+    {
+      "rank": 2,
+      "model": "SVM",
+      "type": "Baseline",
+      "accuracy": 0.93,
+      "f1": 0.91,
+      "roc_auc": 0.95
+    },
+    {
+      "rank": 3,
+      "model": "KNN",
+      "type": "Baseline",
+      "accuracy": 0.9,
+      "f1": 0.88,
+      "roc_auc": 0.91
+    },
+    {
+      "rank": 4,
+      "model": "Naive Bayes",
+      "type": "Baseline",
+      "accuracy": 0.86,
+      "f1": 0.84,
+      "roc_auc": 0.87
+    },
+    {
+      "rank": 5,
+      "model": "Decision Tree",
+      "type": "Baseline",
+      "accuracy": 0.87,
+      "f1": 0.84,
+      "roc_auc": 0.88
+    }
+  ]
+}

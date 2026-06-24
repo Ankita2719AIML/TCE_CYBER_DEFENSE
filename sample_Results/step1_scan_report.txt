@@ -1,0 +1,50 @@
+============================================================
+  VeReMi DATASET SCAN REPORT  (Step 1 - Fast Mode)
+============================================================
+  Scan Time      : 9.19 seconds
+  Scan Date      : 2026-06-14 23:49:48
+
+  DATASET STATISTICS
+  ----------------------------------------
+  Simulation Folders  : 225
+  Total Folders       : 2250
+  Total JSON Files    : 48240
+  Ground Truth Files  : 225
+  Regular Log Files   : 48015
+  Corrupted/Empty     : 0
+
+  ATTACK CATEGORIES
+  ----------------------------------------
+  A 0 | Normal (No Attack)             | 38344 log files
+  A 1 | Constant Attack                |  1952 log files
+  A 2 | Random Offset Attack           |  1952 log files
+  A 4 | Constant Offset Attack         |  1937 log files
+  A 8 | Random Position Attack         |  1916 log files
+  A16 | Eventual Stop Attack           |  1914 log files
+
+  REGULAR LOG SCHEMA (first record sample)
+  ----------------------------------------
+    type: int  (example: 2)
+    rcvTime: float  (example: 10800.0)
+    pos: list  (example: [3610.808689155647, 5434.584071092829, 1.895])
+    noise: list  (example: [0.0, 0.0, 0.0])
+    spd: list  (example: [-3.5218860756696313, 30.51676817695764, 0.0])
+    spd_noise: list  (example: [0.0, 0.0, 0.0])
+
+  GROUND TRUTH SCHEMA (first record sample)
+  ----------------------------------------
+    type: int  (example: 4)
+    time: float  (example: 10800.392784793165)
+    sender: int  (example: 13)
+    attackerType: int  (example: 0)
+    messageID: int  (example: 38)
+    pos: list  (example: [3597.1520859538705, 5542.199221013564, 1.895])
+    pos_noise: list  (example: [0.0, 0.0, 0.0])
+    spd: list  (example: [-3.178365760312756, 38.7989694164331, 0.0])
+    spd_noise: list  (example: [0.0, 0.0, 0.0])
+
+  FILES SAVED
+  ----------------------------------------
+  Inventory : C:\Users\priya\OneDrive\Documents\TCE_CYBER_DEFENSE\dataset_inventory.csv
+  Report    : C:\Users\priya\OneDrive\Documents\TCE_CYBER_DEFENSE\results\step1_scan_report.txt
+============================================================
